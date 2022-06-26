@@ -1,0 +1,23 @@
+{% extends "mainte/base.html" %}
+{% block title %}ユーザー更新{% endblock %}
+{% block content %}
+<h3>ユーザー更新</h3>
+
+<form action="{{ url_for('mainte.users_update', user_id=user.id) }}" method="POST" novalidate="novalidate">
+    {{ form.csrf_token }}
+    {{ form.username.label }} {{ form.username(size=15, class="form-control is-invalid mm-input", placeholder="ユーザー名", value=user.username) }}
+    {% for error in form.username.errors %}
+        <div class="invalid-feedback">{{ error }}</div>
+    {% endfor %}    
+    {{ form.email.label }} {{ form.email(size=30, class="form-control is-invalid mm-input", placeholder="メールアドレス", value=user.email) }}
+    {% for error in form.email.errors %}
+        <div class="invalid-feedback">{{ error }}</div>
+    {% endfor %}
+    {{ form.password.label }} {{ form.password(size=15, class="form-control is-invalid mm-input", placeholder="パスワード") }}
+    {% for error in form.password.errors %}
+        <div class="invalid-feedback">{{ error }}</div>
+    {% endfor %}
+    <input type="submit" class="btn btn-primary mm-btn" value="更新" />
+    <a href="{{ url_for('mainte.users_index') }}" class="btn btn-primary mm-btn">戻る</a>
+</form>
+{% endblock %}

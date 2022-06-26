@@ -1,0 +1,9 @@
+{% extends "mainte/base.html" %}
+{% block title %}マスタメンテナンスメニュー{% endblock %}
+{% block content %}
+<h2>マスタメンテナンスメニュー</h2>
+
+<ul class="nav flex-column">
+    <li><a href="{{ url_for('mainte.users_index') }}" class="btn btn-primary">ユーザーマスタ</a></li>
+</ul>
+{% endblock %}
