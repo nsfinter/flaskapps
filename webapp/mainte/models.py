@@ -1,8 +1,9 @@
 from datetime import datetime
-from webapp.app import db
+from webapp.app import db, login_manager
 from werkzeug.security import generate_password_hash, check_password_hash
+from flask_login import UserMixin
 
-class User(db.Model):
+class User(db.Model, UserMixin):
     # テーブル名
     __tablename__ = "users"
     # カラム設定
@@ -29,3 +30,8 @@ class User(db.Model):
     # emailが重複しているか判定する
     def is_duplicate_email(self):
         return User.query.filter_by(email=self.email).first() is not None
+
+# ログインしているユーザー情報を取得する
+@login_manager.user_loader
+def load_user(user_id):
+    return User.query.get(user_id)

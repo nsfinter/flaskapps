@@ -50,7 +50,7 @@ def users_update(user_id):
         return redirect(url_for("mainte.users_index"))
     return render_template("mainte/users/update.html", form=form, user=user)
 
-# ユーザー削除
+# ユーザー削除機能
 @mainte.route("/users/<user_id>/delete", methods=["GET"])
 def users_delete(user_id):
     user = User.query.filter_by(id=user_id).first()

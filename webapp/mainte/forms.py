@@ -1,13 +1,13 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField
-from wtforms.validators import length, DataRequired, Email
+from wtforms.validators import Length, DataRequired, Email
 
 class UserForm(FlaskForm):
     username = StringField(
         label="ユーザー名",  
         validators=[
             DataRequired(message="ユーザー名を入力してください。"), 
-            length(max=15, message="ユーザー名を15文字以内で入力してください。"),
+            Length(max=15, message="ユーザー名を15文字以内で入力してください。"),
         ]
     )
         
@@ -15,7 +15,7 @@ class UserForm(FlaskForm):
         label="メールアドレス",
         validators=[
             DataRequired(message="メールアドレスを入力してください。"),
-            length(max=30, message="メールアドレスを30文字以内で入力してください。"),
+            Length(max=30, message="メールアドレスを30文字以内で入力してください。"),
             Email(message="メールアドレスが不正です。"),
         ]
     )
@@ -24,7 +24,7 @@ class UserForm(FlaskForm):
         label="パスワード",
         validators=[
             DataRequired(message="パスワードを入力してください。"),
-            length(max=15, message="パスワードを15文字以内で入力してください。"),
+            Length(max=15, message="パスワードを15文字以内で入力してください。"),
         ]
     )
 

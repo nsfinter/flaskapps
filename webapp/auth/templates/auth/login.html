@@ -1,0 +1,20 @@
+{% extends "appli/base.html" %}
+{% block title %}ログイン{% endblock %}
+{% block content %}
+<div class="mx-auto auth-main">
+    <div class="card auth-signup">
+        <header>ログイン</header>
+        <section>
+            <form action="{{ url_for('auth.login') }}" method="POST" novalidate="novalidate">
+                {% for message in get_flashed_messages() %}
+                    <div class="auth-flash">{{ message }}</div>
+                {% endfor %}
+                {{ form.csrf_token }}
+                {{ form.email(class="form-control auth-input", placeholder="メールアドレス") }}
+                {{ form.password(class="form-control auth-input", placeholder="パスワード") }}
+                {{ form.submit(class="btn btn-primary btn-block auth-btn") }}
+            </form>
+        </section>
+    </div>
+</div>
+{% endblock %}
